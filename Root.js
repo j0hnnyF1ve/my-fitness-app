@@ -1,5 +1,5 @@
 import React from 'react';
-import { TabNavigator, StackNavigator } from 'react-navigation';
+import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import RoutinesPage from './app/screens/Routines';
@@ -9,19 +9,42 @@ import ExercisesPage from './app/screens/Exercises';
 import CreateExercisePage from './app/screens/CreateExercise';
 import LogWorkoutPage from './app/screens/LogWorkout';
 
-export default TabNavigator(
+const icons = {
+  'Logs': 'event-note',
+  'Routines': 'edit'
+//  'Progress': 'camera-alt'
+};
+
+const LogStack = createStackNavigator(
   {
-    Logs: {
-      screen: LogStack
-    },
-    Routines: {
-      screen: RoutinesStack
-    }
+    Logs: LogsPage,
+    LogWorkout: LogWorkoutPage
+  },
+  { initialRouteName: 'Logs' }
+);
+
+const RoutinesStack = createStackNavigator(
+  {
+    Routines: RoutinesPage,
+    Exercises: ExercisesPage ,
+    CreateExercises: CreateExercisePage
+
+  },
+  { initialRouteName: 'Routines' }
+);
+
 /*
-    , Progress: {
-      screen: ProgressStack
-    }
+const ProgressStack = StackNavigator(
+  { Progress: ProgressPage },
+  { initialRouteName: 'Progress' }
+)
 */
+
+
+export default createBottomTabNavigator(
+  {
+    Logs: LogStack,
+    Routines: RoutinesStack
   },
   {
     navigationOptions: ({navigation}) => ({
@@ -45,37 +68,3 @@ export default TabNavigator(
   },
   { initialRouteName: 'Routines' }
 )
-
-const icons = {
-  'Logs': 'event-note',
-  'Routines': 'edit'
-//  'Progress': 'camera-alt'
-};
-
-const LogStack = StackNavigator(
-  {
-    Logs: { screen: LogsPage },
-    LogWorkout: { screen: LogWorkoutPage }
-  },
-  { initialRouteName: 'Logs' }
-);
-
-const RoutinesStack = StackNavigator(
-  {
-    Routines: { screen: RoutinesPage },
-    Exercises: { screen: ExercisesPage },
-    CreateExercises: { screen: CreateExercisePage }
-  },
-  { initialRouteName: 'Routines' }
-);
-
-/*
-const ProgressStack = StackNavigator(
-  {
-    Progress: { screen: ProgressPage }
-  },
-  {
-    initialRouteName: 'Progress'
-  }
-)
-*/

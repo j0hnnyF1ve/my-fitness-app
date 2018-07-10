@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import Root from './Root';
+/*
 import Screen from './app/components/Screen';
 import IconButton from './app/components/IconButton';
 
@@ -11,9 +13,9 @@ import CreateExercisePage from './app/screens/CreateExercise';
 import LogsPage from './app/screens/Logs';
 import LogWorkoutPage from './app/screens/LogWorkout';
 import ShowWorkoutPage from './app/screens/ShowWorkout';
-
+*/
 import styles from './app/lib/styles';
-
+/*
 const pages = {
   routines: {
     title: 'Routines',
@@ -65,6 +67,21 @@ export default class App extends React.Component {
             <IconButton icon="camera-alt" />
           </View>
           <Text>{ date }</Text>
+      </View>
+    );
+  }
+}
+*/
+
+export default class App extends React.Component {
+  render() {
+    var date = new Date();
+    date = date.toString();
+
+    return (
+      <View style={styles.container}>
+        <Root />
+        <Text>{ date }</Text>
       </View>
     );
   }
